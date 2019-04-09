@@ -1,0 +1,182 @@
+\documentclass[10pt]{article}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\setlength{\textheight}{25.7cm}
+\setlength{\textwidth}{16cm}
+\setlength{\unitlength}{1mm}
+\setlength{\topskip}{2.5truecm}
+\topmargin 260mm \advance \topmargin -\textheight 
+\divide \topmargin by 2 \advance \topmargin -1in 
+\headheight 0pt \headsep 0pt \leftmargin 210mm \advance
+\leftmargin -\textwidth 
+\divide \leftmargin by 2 \advance \leftmargin -1in 
+\oddsidemargin \leftmargin \evensidemargin \leftmargin
+\parindent=0pt
+\frenchspacing
+\usepackage{microtype}
+\usepackage{tikz}
+\usepackage[english,dutch]{babel}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage[procnames]{listings}
+\newcommand{\iso}{\ \raisebox{0.1ex}{\ensuremath{\stackrel{\sim}{\longrightarrow}}\ \,}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\e}{\epsilon}
+\renewcommand{\O}{\Omega}
+\renewcommand{\o}{\omega}
+\newcommand{\p}[2]{\dfrac{\partial #1}{\partial #2}}
+\renewcommand{\a}{\alpha}
+\renewcommand{\r}{\rho}
+\renewcommand{\b}{\beta}
+\newcommand{\D}{\Delta}
+\newcommand{\s}{\sigma}
+\newcommand{\g}{\gamma}
+\newcommand{\G}{\Gamma}
+\renewcommand{\d}{\delta}
+\renewcommand{\l}{\lambda}
+\renewcommand{\t}{\theta}
+\renewcommand{\L}{\Lambda}
+\newcommand{\ov}[1]{\overline{#1}}
+\usepackage{amsmath}
+\usepackage{fullpage}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ 
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  firstnumber=1,                   % start line enumeration with line 1000
+  frame=single,	                   % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  language=Python,                 % the language of the code
+  morekeywords={*,...},            % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=4,	                   % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+\title{NUR Solutions Hand-In Set 1}
+\author{Orlin Koop, s1676059}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+In this document the solutions for the NUR first hand-in set are given. The Output of the python script is shown, with commentary, under Section 1, the plots are shown, with commentary, in Section 2. The code itself is found in Section 3, where most of the commentary is included inside the file. There are just two files, one with all used functions, and one that calls the functions to solve the exercises.
+\end{abstract}
+
+\section{Outputs}
+
+{\obeylines\obeyspaces
+\texttt{
+\input{outputs.txt}
+}}
+
+As can be seen, some exercise do not output anything. I'll explain all outputs below:
+
+\begin{enumerate}[-]
+
+\item 1(a): These are the $\lambda$ (or 'l') and $k$ values, followed by the value of Poisson$(\l,k)$ (or 'Pl(k)'), where Poisson is given by:
+$$\text{Poisson}(\l,k)=\dfrac{e^{-\l}\l^k}{k!}$$
+
+\item 1(b) Only returns two plots, one of the scatter of random elements and one with the histogram of a sample of the RNG we made. (See Section 2)
+
+\item 2(a): a, b and c are parameters in the function:
+$$n(x)=A\langle N_{sat}\rangle \left(\dfrac{x}{b}\right)^{a-3}e^{-(x/b)^c}.$$
+which is a number density profile of satellites. $A$ has to be configured such that the 3D spherical integral equals 100, and the $A$ for which this works is printed too. a, b and c have been generated randomly within a given interval. Interpolation has been done using Rombergs method, for I think that is the most sophisticated algorithm.
+
+\item 2(b) was an interpolation exercise, and only produces a plot (see below)
+
+\item 2(c): Speaks for itself, the algorithm used for finding the derivative was Ridders method, because I expected the best results from it.
+
+\item 2(d) and 2(e) produce two .txt-files containing the simulated samples of satellites (radius, phi, psi). These files can be found in the directory with run.sh after running. The plot for 2(e) can be found below.
+
+\item 2(f): The root-finding algorithm used is Brents method, combined with thus the Golden Section Step algorithm is Brents step does not work. These are roots of $N(x)-y/2=0$, where $y$ is $max\{N(x)\}$ and $N(x)=n(x)4\pi x^2$.
+
+\item 2(g): These are the percentiles of a sample of 1000 halos, where we counted the amount of satellites in the largest bin of another halo (from 2(d)). This also returns a plot showing the corresponding histogram and overplotted with the expected Poisson distribution.
+
+\item 2(h): An interpolator has been written and in this line we see the value the interpolator returns for $A$ from 2(a), and $A$ from 2(a) has been printed again too.
+
+\end{enumerate}
+
+
+
+\section{Plots}
+
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\linewidth]{hist1b.pdf}
+  \caption{A histogram of the random sample (size:1000000) made by my RNG. It is quite close to a uniform distribution. We could actually not really expect a better result due to the pseudo-randomness.}
+  \label{fig:fig1}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\linewidth]{scatter1b.pdf}
+  \caption{The relative scatter of points in the first 1000 elements of our sample. As you can see, it is quite spread out, so I do trust my RNG.}
+  \label{fig:fig2}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\linewidth]{2b.pdf}
+  \caption{The function $n(x)$ (in red) and the interpolated lines (green, dashed) between the five points (red dots) given. The interpolated resembles the function not quite close in the domain $[1,5]$, but before that it performs extremely well. Interpolation was done in log-space linearly. I do not expect another algorithm to do a better job, because we only have 5 points.}
+  \label{fig:fig3}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\linewidth]{2e.pdf}
+  \caption{The histogram of the average amount of satellites per radius-bin, which should be given by $N(x)$. We see that my code and simulation does not quite match this $N(x)$, which I think is mainly due to how I sample from $p(x)$. It could also be due to the fact that the value of $N(x)$ is quite low in that regime, so it is very difficult to produce satellites at those radii from the get-go, which thus alters the results.}
+  \label{fig:fig4}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\linewidth]{2g.pdf}
+  \caption{A histogram showing the amount of satellites in the same radius-bin as had the maximal amount of satellites in 2(d). This should have the Poisson-distribution with a mean $\l$ that is for now approximated by the sample-mean, because it is a counting-problem. We see that the histogram not quite matches the Poisson-distribution. Explanations for this could be those stated beneath the last Figure.}
+  \label{fig:fig5}
+\end{figure}
+
+
+
+
+\section{Code}
+This script contains all functions and classes used in making the answers above.
+\lstinputlisting{functions.py}
+This is the main file executing the code for answering the questions from the sheet.
+\lstinputlisting{HIv1.py}
+
+\section{Failed Exercises}
+I did implement a working 'Conjugate Gradient' algorithm, but this could of course not quite be used for Exercise 3, which I discovered a bit too late. Therefore I was not able to make Exercise 3 work, for my implementation of the DHS does not work well. Note: The one in the code is a 2D-version, but that did already not work. Also, I had to spend way too many time trying to understand GitHub and bash-files to get to theory, and had other coursework to attend.
+
+
+
+\end{document}
